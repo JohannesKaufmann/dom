@@ -60,3 +60,7 @@ func FindFirstNode(startNode *html.Node, matchFn func(node *html.Node) bool) *ht
 	}
 	return nil
 }
+
+func ContainsNode(startNode *html.Node, matchFn func(node *html.Node) bool) bool {
+	return FindFirstNode(startNode, matchFn) != nil
+}

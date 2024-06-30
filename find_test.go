@@ -53,3 +53,39 @@ func TestFindFirstNode(t *testing.T) {
 		t.Error("expected nil node")
 	}
 }
+
+func TestContainsNode(t *testing.T) {
+	node := parse(t, `<root><start><span><target></target></span><span><target></target></span></start></root><next></next>`, "root")
+
+	var called1 int
+	res1 := ContainsNode(node.FirstChild, func(n *html.Node) bool {
+		if n.Data == "next" {
+			t.Error("the next node should not have been visited")
+		}
+
+		called1++
+		return n.Data == "target"
+	})
+	if res1 != true {
+		t.Error("expected true")
+	}
+	if called1 != 2 {
+		t.Error("expected fn to be called 2 times")
+	}
+
+	var called2 int
+	res2 := ContainsNode(node.FirstChild, func(n *html.Node) bool {
+		if n.Data == "next" {
+			t.Error("the next node should not have been visited")
+		}
+
+		called2++
+		return n.Data == "else"
+	})
+	if res2 != false {
+		t.Error("expected false")
+	}
+	if called2 != 4 {
+		t.Error("expected fn to be called 4 times")
+	}
+}
