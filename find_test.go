@@ -8,7 +8,15 @@ import (
 )
 
 func TestContainsNode(t *testing.T) {
-	node := parse(t, `<root><start><span><target></target></span><span><target></target></span></start></root><next></next>`, "root")
+	input := `<root><start><span><target></target></span><span><target></target></span></start></root><next></next>`
+	doc, err := html.Parse(strings.NewReader(input))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	node := FindFirstNode(doc, func(node *html.Node) bool {
+		return node.Data == "root"
+	})
 
 	var called1 int
 	res1 := ContainsNode(node.FirstChild, func(n *html.Node) bool {
