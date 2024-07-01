@@ -31,7 +31,7 @@ func TestRenderRepresentation_NoAttributes(t *testing.T) {
 func TestRenderRepresentation_MultipleAttributes(t *testing.T) {
 	input := `<a href="/page.html" target="_blank" class="button primary">Text</a>`
 	expected := `├─body
-│ ├─a (href=/page.html target=_blank class=button primary)
+│ ├─a (href="/page.html" target="_blank" class="button primary")
 │ │ ├─#text "Text"`
 
 	doc, err := html.Parse(strings.NewReader(input))
@@ -57,7 +57,7 @@ func TestRenderRepresentation_Root(t *testing.T) {
 │ ├─html
 │ │ ├─head
 │ │ ├─body
-│ │ │ ├─img (src=/img.png)
+│ │ │ ├─img (src="/img.png")
 
 `)
 

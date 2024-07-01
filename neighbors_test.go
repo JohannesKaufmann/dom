@@ -43,15 +43,15 @@ func TestInitGetNeighbor(t *testing.T) {
 			expected: `
 ├─#document
 │ ├─html
-│ │ ├─head (match=6)
+│ │ ├─head (match="6")
 │ │ ├─body
-│ │ │ ├─nav (match=3)
-│ │ │ │ ├─p (match=4)
-│ │ │ │ │ ├─#text (match=5) "up"
+│ │ │ ├─nav (match="3")
+│ │ │ │ ├─p (match="4")
+│ │ │ │ │ ├─#text (match="5") "up"
 │ │ │ ├─main
-│ │ │ │ ├─button (match=0)
-│ │ │ │ │ ├─span (match=1)
-│ │ │ │ │ │ ├─#text (match=2) "start"
+│ │ │ │ ├─button (match="0")
+│ │ │ │ │ ├─span (match="1")
+│ │ │ │ │ │ ├─#text (match="2") "start"
 │ │ │ │ ├─div
 │ │ │ │ │ ├─h3
 │ │ │ │ │ │ ├─#text "heading"
@@ -68,14 +68,14 @@ func TestInitGetNeighbor(t *testing.T) {
 			expected: `
 ├─#document
 │ ├─html
-│ │ ├─head (match=4)
+│ │ ├─head (match="4")
 │ │ ├─body
-│ │ │ ├─nav (match=2)
-│ │ │ │ ├─p (match=3)
+│ │ │ ├─nav (match="2")
+│ │ │ │ ├─p (match="3")
 │ │ │ │ │ ├─#text "up"
 │ │ │ ├─main
-│ │ │ │ ├─button (match=0)
-│ │ │ │ │ ├─span (match=1)
+│ │ │ │ ├─button (match="0")
+│ │ │ │ │ ├─span (match="1")
 │ │ │ │ │ │ ├─#text "start"
 │ │ │ │ ├─div
 │ │ │ │ │ ├─h3
@@ -93,13 +93,13 @@ func TestInitGetNeighbor(t *testing.T) {
 			expected: `
 ├─#document
 │ ├─html
-│ │ ├─head (match=2)
+│ │ ├─head (match="2")
 │ │ ├─body
-│ │ │ ├─nav (match=1)
+│ │ │ ├─nav (match="1")
 │ │ │ │ ├─p
 │ │ │ │ │ ├─#text "up"
 │ │ │ ├─main
-│ │ │ │ ├─button (match=0)
+│ │ │ │ ├─button (match="0")
 │ │ │ │ │ ├─span
 │ │ │ │ │ │ ├─#text "start"
 │ │ │ │ ├─div
@@ -118,13 +118,13 @@ func TestInitGetNeighbor(t *testing.T) {
 			expected: `
 ├─#document
 │ ├─html
-│ │ ├─head (match=2)
+│ │ ├─head (match="2")
 │ │ ├─body
-│ │ │ ├─nav (match=1)
+│ │ │ ├─nav (match="1")
 │ │ │ │ ├─p
 │ │ │ │ │ ├─#text "up"
 │ │ │ ├─main
-│ │ │ │ ├─button (match=0)
+│ │ │ │ ├─button (match="0")
 │ │ │ │ │ ├─span
 │ │ │ │ │ │ ├─#text "start"
 │ │ │ │ ├─div
@@ -152,17 +152,17 @@ func TestInitGetNeighbor(t *testing.T) {
 │ │ │ │ ├─p
 │ │ │ │ │ ├─#text "up"
 │ │ │ ├─main
-│ │ │ │ ├─button (match=0)
-│ │ │ │ │ ├─span (match=1)
-│ │ │ │ │ │ ├─#text (match=2) "start"
-│ │ │ │ ├─div (match=3)
-│ │ │ │ │ ├─h3 (match=4)
-│ │ │ │ │ │ ├─#text (match=5) "heading"
-│ │ │ │ │ ├─p (match=6)
-│ │ │ │ │ │ ├─#text (match=7) "description"
-│ │ │ ├─footer (match=8)
-│ │ │ │ ├─p (match=9)
-│ │ │ │ │ ├─#text (match=10) "down"
+│ │ │ │ ├─button (match="0")
+│ │ │ │ │ ├─span (match="1")
+│ │ │ │ │ │ ├─#text (match="2") "start"
+│ │ │ │ ├─div (match="3")
+│ │ │ │ │ ├─h3 (match="4")
+│ │ │ │ │ │ ├─#text (match="5") "heading"
+│ │ │ │ │ ├─p (match="6")
+│ │ │ │ │ │ ├─#text (match="7") "description"
+│ │ │ ├─footer (match="8")
+│ │ │ │ ├─p (match="9")
+│ │ │ │ │ ├─#text (match="10") "down"
 			`,
 		},
 		{
@@ -177,16 +177,16 @@ func TestInitGetNeighbor(t *testing.T) {
 │ │ │ │ ├─p
 │ │ │ │ │ ├─#text "up"
 │ │ │ ├─main
-│ │ │ │ ├─button (match=0)
-│ │ │ │ │ ├─span (match=1)
+│ │ │ │ ├─button (match="0")
+│ │ │ │ │ ├─span (match="1")
 │ │ │ │ │ │ ├─#text "start"
-│ │ │ │ ├─div (match=2)
-│ │ │ │ │ ├─h3 (match=3)
+│ │ │ │ ├─div (match="2")
+│ │ │ │ │ ├─h3 (match="3")
 │ │ │ │ │ │ ├─#text "heading"
-│ │ │ │ │ ├─p (match=4)
+│ │ │ │ │ ├─p (match="4")
 │ │ │ │ │ │ ├─#text "description"
-│ │ │ ├─footer (match=5)
-│ │ │ │ ├─p (match=6)
+│ │ │ ├─footer (match="5")
+│ │ │ │ ├─p (match="6")
 │ │ │ │ │ ├─#text "down"
 			`,
 		},
@@ -202,15 +202,15 @@ func TestInitGetNeighbor(t *testing.T) {
 │ │ │ │ ├─p
 │ │ │ │ │ ├─#text "up"
 │ │ │ ├─main
-│ │ │ │ ├─button (match=0)
+│ │ │ │ ├─button (match="0")
 │ │ │ │ │ ├─span
 │ │ │ │ │ │ ├─#text "start"
-│ │ │ │ ├─div (match=1)
+│ │ │ │ ├─div (match="1")
 │ │ │ │ │ ├─h3
 │ │ │ │ │ │ ├─#text "heading"
 │ │ │ │ │ ├─p
 │ │ │ │ │ │ ├─#text "description"
-│ │ │ ├─footer (match=2)
+│ │ │ ├─footer (match="2")
 │ │ │ │ ├─p
 │ │ │ │ │ ├─#text "down"
 			`,
@@ -227,15 +227,15 @@ func TestInitGetNeighbor(t *testing.T) {
 │ │ │ │ ├─p
 │ │ │ │ │ ├─#text "up"
 │ │ │ ├─main
-│ │ │ │ ├─button (match=0)
+│ │ │ │ ├─button (match="0")
 │ │ │ │ │ ├─span
 │ │ │ │ │ │ ├─#text "start"
-│ │ │ │ ├─div (match=1)
+│ │ │ │ ├─div (match="1")
 │ │ │ │ │ ├─h3
 │ │ │ │ │ │ ├─#text "heading"
 │ │ │ │ │ ├─p
 │ │ │ │ │ │ ├─#text "description"
-│ │ │ ├─footer (match=2)
+│ │ │ ├─footer (match="2")
 │ │ │ │ ├─p
 │ │ │ │ │ ├─#text "down"
 			`,

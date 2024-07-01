@@ -20,7 +20,7 @@ func writeNode(buf *bytes.Buffer, node *html.Node) {
 		buf.WriteString(" (")
 	}
 	for i, attr := range node.Attr {
-		buf.WriteString(attr.Key + "=" + attr.Val)
+		buf.WriteString(fmt.Sprintf("%s=%q", attr.Key, attr.Val))
 
 		if i < len(node.Attr)-1 {
 			buf.WriteString(" ")
