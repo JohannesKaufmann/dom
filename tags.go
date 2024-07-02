@@ -31,7 +31,7 @@ func NodeName(node *html.Node) string {
 	return ""
 }
 
-func IsInlineNode(name string) bool {
+func NameIsInlineNode(name string) bool {
 	switch name {
 	case
 		"#text",
@@ -97,7 +97,7 @@ func IsInlineNode(name string) bool {
 	}
 }
 
-func IsBlockNode(name string) bool {
+func NameIsBlockNode(name string) bool {
 	switch name {
 	case
 		"address",
@@ -131,6 +131,16 @@ func IsBlockNode(name string) bool {
 
 		return true
 
+	default:
+		return false
+	}
+}
+
+func NameIsHeading(name string) bool {
+	switch name {
+	case
+		"h1", "h2", "h3", "h4", "h5", "h6":
+		return true
 	default:
 		return false
 	}

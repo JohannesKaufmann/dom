@@ -81,28 +81,41 @@ func TestNodeName(t *testing.T) {
 	}
 }
 
-func TestIsInlineNode(t *testing.T) {
-	if out := IsInlineNode("strong"); out != true {
+func TestNameIsInlineNode(t *testing.T) {
+	if out := NameIsInlineNode("strong"); out != true {
 		t.Error("expected different output")
 	}
 
-	if out := IsInlineNode("div"); out != false {
+	if out := NameIsInlineNode("div"); out != false {
 		t.Error("expected different output")
 	}
-	if out := IsInlineNode("magic"); out != false {
+	if out := NameIsInlineNode("magic"); out != false {
 		t.Error("expected different output")
 	}
 }
 
-func TestIsBlockNode(t *testing.T) {
-	if out := IsBlockNode("div"); out != true {
+func TestNameIsBlockNode(t *testing.T) {
+	if out := NameIsBlockNode("div"); out != true {
 		t.Error("expected different output")
 	}
 
-	if out := IsBlockNode("strong"); out != false {
+	if out := NameIsBlockNode("strong"); out != false {
 		t.Error("expected different output")
 	}
-	if out := IsBlockNode("magic"); out != false {
+	if out := NameIsBlockNode("magic"); out != false {
+		t.Error("expected different output")
+	}
+}
+
+func TestNameIsHeading(t *testing.T) {
+	if out := NameIsHeading("h4"); out != true {
+		t.Error("expected different output")
+	}
+
+	if out := NameIsHeading("strong"); out != false {
+		t.Error("expected different output")
+	}
+	if out := NameIsHeading("magic"); out != false {
 		t.Error("expected different output")
 	}
 }
