@@ -99,17 +99,17 @@ func TestUnwrapNode(t *testing.T) {
 	// - - - - - //
 
 	expectedBefore := strings.TrimSpace(`
-├─root
-│ ├─parent
-│ │ ├─child1
-│ │ ├─child2
-│ │ │ ├─child2.1
-	`)
-	expectedAfter := strings.TrimSpace(`
-├─root
+root
+├─parent
 │ ├─child1
 │ ├─child2
 │ │ ├─child2.1
+	`)
+	expectedAfter := strings.TrimSpace(`
+root
+├─child1
+├─child2
+│ ├─child2.1
 	`)
 
 	if RenderRepresentation(root) != expectedBefore {

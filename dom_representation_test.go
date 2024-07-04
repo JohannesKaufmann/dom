@@ -53,11 +53,11 @@ func TestRenderRepresentation_Root(t *testing.T) {
 	input := `<img src="/img.png" />`
 	expected := strings.TrimSpace(`
 
-├─#document
-│ ├─html
-│ │ ├─head
-│ │ ├─body
-│ │ │ ├─img (src="/img.png")
+#document
+├─html
+│ ├─head
+│ ├─body
+│ │ ├─img (src="/img.png")
 
 `)
 

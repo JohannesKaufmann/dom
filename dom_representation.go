@@ -9,6 +9,9 @@ import (
 )
 
 func writePipeChar(buf *bytes.Buffer, index int) {
+	if index == 0 {
+		return
+	}
 	buf.WriteString(strings.Repeat("│ ", index-1))
 	buf.WriteString("├─")
 }
@@ -51,7 +54,11 @@ func RenderRepresentation(startNode *html.Node) string {
 		}
 	}
 
-	finder(startNode, 1)
+	if startNode.Parent == nil {
+		finder(startNode, 0)
+	} else {
+		finder(startNode, 1)
+	}
 
 	return strings.TrimSpace(buf.String())
 }
