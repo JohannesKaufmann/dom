@@ -74,6 +74,12 @@ For most functions, there are two versions. For example:
 
 - `GetAttribute` and `GetAttributeOr`
 
+- `GetClasses`
+
+- `HasID` and `HasClass`
+
+## NodeName
+
 ---
 
 ### Children & Siblings
