@@ -1,6 +1,7 @@
 package dom
 
 import (
+	"bytes"
 	"strings"
 
 	"golang.org/x/net/html"
@@ -47,4 +48,21 @@ func HasClass(node *html.Node, expectedClass string) bool {
 		}
 	}
 	return false
+}
+
+// - - - - //
+
+func collectText(n *html.Node, buf *bytes.Buffer) {
+	if n.Type == html.TextNode {
+		buf.WriteString(n.Data)
+	}
+	for c := n.FirstChild; c != nil; c = c.NextSibling {
+		collectText(c, buf)
+	}
+}
+
+func CollectText(node *html.Node) string {
+	var buf bytes.Buffer
+	collectText(node, &buf)
+	return buf.String()
 }

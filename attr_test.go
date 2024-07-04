@@ -2,6 +2,7 @@ package dom
 
 import (
 	"reflect"
+	"strings"
 	"testing"
 
 	"golang.org/x/net/html"
@@ -142,5 +143,27 @@ func TestHasClass(t *testing.T) {
 
 	if HasClass(node, "xmas") != false {
 		t.Error("expected different output")
+	}
+}
+
+func TestCollectText(t *testing.T) {
+	input := `
+	<h2 class="article__title">Hello <span>world</span></h2>
+	<p>Some description</p>
+	`
+
+	doc, err := html.Parse(strings.NewReader(input))
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	heading := FindFirstNode(doc, func(node *html.Node) bool {
+		return HasClass(node, "article__title")
+	})
+
+	expected := "Hello world"
+	output := CollectText(heading)
+	if output != expected {
+		t.Errorf("expected %q but got %q", expected, output)
 	}
 }
