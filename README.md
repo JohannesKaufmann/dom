@@ -4,6 +4,8 @@
 
 Helper functions for "net/html" that make it easier to interact with `*html.Node`.
 
+🚀 [Getting Started](#getting-started) - 📚 [Documentation](#documentation) - 🧑‍💻 [Examples](/examples/)
+
 ## Installation
 
 ```bash
@@ -14,7 +16,7 @@ go get -u github.com/JohannesKaufmann/dom
 > This "dom" libary was developed for the needs of the [html-to-markdown](https://github.com/JohannesKaufmann/html-to-markdown) library.
 > That beeing said, please submit any functions that you need.
 
-## Usage
+## Getting Started
 
 ```go
 package main
@@ -63,36 +65,50 @@ The naming scheme in this library is:
 For most functions, there are two versions. For example:
 
 - `FirstChildNode()` and `FirstChildElement()`
-- `GetChildNodes()` and `GetChildElements()`
+- `AllChildNodes()` and `AllChildElements()`
 - ...
 
 ## Documentation
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/JohannesKaufmann/dom.svg)](https://pkg.go.dev/github.com/JohannesKaufmann/dom)
 
-### Attributes
+### Attributes & Content
 
-- `GetAttribute` and `GetAttributeOr`
+You can get the attributes of a node using `GetAttribute`, `GetAttributeOr` or the more specialized `GetClasses` that returns a slice of strings.
 
-- `GetClasses`
+For matching nodes, `HasID` and `HasClass` can be used.
 
-- `HasID` and `HasClass`
+If you want to collect the #text of all the child nodes, you can call `CollectText`.
 
-## NodeName
+```go
+name := dom.NodeName(node)
+// "h2"
+
+href := dom.GetAttributeOr(node, "href", "")
+// "github.com"
+
+isHeading := dom.HasClass(node, "repo__name")
+// `true`
+
+content := dom.CollectText(node)
+// "Lorem ipsum"
+```
 
 ---
 
 ### Children & Siblings
 
-- `AllChildNodes` and `AllChildElements`
+You can already use `node.FirstChild` to get the first child _node_. For the convenience we added `FirstChildNode()` and `FirstChildElement()` which returns `*html.Node`.
 
-- `FirstChildNode` and `FirstChildElement`
+To get all direct children, use `AllChildNodes` and `AllChildElements` which returns `[]*html.Node`.
 
 - `PrevSiblingNode` and `PrevSiblingElement`
 
 - `NextSiblingNode` and `NextSiblingElement`
 
 ### Find Nodes
+
+Searching for nodes deep in the tree is made easier with:
 
 ```go
 firstParagraph := dom.FindFirstNode(doc, func(node *html.Node) bool {
@@ -106,6 +122,9 @@ allParagraphs := dom.FindAllNodes(doc, func(node *html.Node) bool {
 })
 // []*html.Node
 ```
+
+- 🧑‍💻 [Example code, find](/examples/find/)
+- 🧑‍💻 [Example code, selectors](/examples/selectors/)
 
 ---
 
@@ -154,13 +173,34 @@ If you want to skip the children you can use `GetNextNeighborNodeExcludingOwnChi
 
 The same functions also exist for the previous nodes, e.g. `GetPrevNeighborNode`.
 
+- 🧑‍💻 [Example code, next basics](/examples/next_basics/)
+- 🧑‍💻 [Example code, next inside a loop](/examples/next_loop/)
+- 📺 [Loom Video](#)
+
+TODO: Loom Video
+
 ---
 
-### RemoveNode
+### Remove & Replace Node
 
-### ReplaceNode
+```go
+if dom.HasClass(node, "lang__old") {
+	newNode := &html.Node{
+		Type: html.TextNode,
+		Data: "🪦",
+	}
+	dom.ReplaceNode(node, newNode)
+}
 
-### UnwrapNode
+
+for _, node := range emptyTextNodes {
+	dom.RemoveNode(node)
+}
+```
+
+- 🧑‍💻 [Example code, remove and replace](/examples/remove_replace/)
+
+### Unwrap Node
 
 ```text
 ├─#document
@@ -218,6 +258,7 @@ And the `#text` nodes stand out.
 
 > [!TIP]
 > This function could be useful for debugging & testcases.
+> For example in [neighbors_test.go](/neighbors_test.go)
 
 ```text
 ├─#document
@@ -233,3 +274,5 @@ While the normal "net/html" [`Render()`](https://pkg.go.dev/golang.org/x/net/htm
 ```
 <html><head></head><body><a href="/about">Read More</a></body></html>
 ```
+
+- 🧑‍💻 [Example code, dom representation](/examples/dom_representation/)
