@@ -123,8 +123,8 @@ allParagraphs := dom.FindAllNodes(doc, func(node *html.Node) bool {
 // []*html.Node
 ```
 
-- 🧑‍💻 [Example code, find](/examples/find/)
-- 🧑‍💻 [Example code, selectors](/examples/selectors/)
+- 🧑‍💻 [Example code, find](/examples/find/main.go)
+- 🧑‍💻 [Example code, selectors](/examples/selectors/main.go)
 
 ---
 
@@ -173,8 +173,8 @@ If you want to skip the children you can use `GetNextNeighborNodeExcludingOwnChi
 
 The same functions also exist for the previous nodes, e.g. `GetPrevNeighborNode`.
 
-- 🧑‍💻 [Example code, next basics](/examples/next_basics/)
-- 🧑‍💻 [Example code, next inside a loop](/examples/next_loop/)
+- 🧑‍💻 [Example code, next basics](/examples/next_basics/main.go)
+- 🧑‍💻 [Example code, next inside a loop](/examples/next_loop/main.go)
 - 📺 [Loom Video](#)
 
 TODO: Loom Video
@@ -198,7 +198,7 @@ for _, node := range emptyTextNodes {
 }
 ```
 
-- 🧑‍💻 [Example code, remove and replace](/examples/remove_replace/)
+- 🧑‍💻 [Example code, remove and replace](/examples/remove_replace/main.go)
 
 ### Unwrap Node
 
@@ -275,4 +275,4 @@ While the normal "net/html" [`Render()`](https://pkg.go.dev/golang.org/x/net/htm
 <html><head></head><body><a href="/about">Read More</a></body></html>
 ```
 
-- 🧑‍💻 [Example code, dom representation](/examples/dom_representation/)
+- 🧑‍💻 [Example code, dom representation](/examples/dom_representation/main.go)
