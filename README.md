@@ -146,25 +146,25 @@ for node != nil {
 If we start the `for` loop at the `<button>` and repeatedly call `GetNextNeighborNode` this would be the _order_ that the nodes are _visited_.
 
 ```text
-├─#document
-│ ├─html
-│ │ ├─head
-│ │ ├─body
-│ │ │ ├─nav
-│ │ │ │ ├─p
-│ │ │ │ │ ├─#text "up"
-│ │ │ ├─main
-│ │ │ │ ├─button   *️⃣
-│ │ │ │ │ ├─span  0️⃣
-│ │ │ │ │ │ ├─#text "start"  1️⃣
-│ │ │ │ ├─div  2️⃣
-│ │ │ │ │ ├─h3  3️⃣
-│ │ │ │ │ │ ├─#text "heading"  4️⃣
-│ │ │ │ │ ├─p  5️⃣
-│ │ │ │ │ │ ├─#text "description"  6️⃣
-│ │ │ ├─footer  7️⃣
-│ │ │ │ ├─p  8️⃣
-│ │ │ │ │ ├─#text "down"  9️⃣
+#document
+├─html
+│ ├─head
+│ ├─body
+│ │ ├─nav
+│ │ │ ├─p
+│ │ │ │ ├─#text "up"
+│ │ ├─main
+│ │ │ ├─button   *️⃣
+│ │ │ │ ├─span  0️⃣
+│ │ │ │ │ ├─#text "start"  1️⃣
+│ │ │ ├─div  2️⃣
+│ │ │ │ ├─h3  3️⃣
+│ │ │ │ │ ├─#text "heading"  4️⃣
+│ │ │ │ ├─p  5️⃣
+│ │ │ │ │ ├─#text "description"  6️⃣
+│ │ ├─footer  7️⃣
+│ │ │ ├─p  8️⃣
+│ │ │ │ ├─#text "down"  9️⃣
 ```
 
 If you only want to visit the ElementNode's (and skip the `#text` Nodes) you can use `GetNextNeighborElement` instead.
@@ -175,9 +175,6 @@ The same functions also exist for the previous nodes, e.g. `GetPrevNeighborNode`
 
 - 🧑‍💻 [Example code, next basics](/examples/next_basics/main.go)
 - 🧑‍💻 [Example code, next inside a loop](/examples/next_loop/main.go)
-- 📺 [Loom Video](#)
-
-TODO: Loom Video
 
 ---
 
@@ -203,28 +200,28 @@ for _, node := range emptyTextNodes {
 ### Unwrap Node
 
 ```text
-├─#document
-│ ├─html
-│ │ ├─head
-│ │ ├─body
-│ │ │ ├─article   *️⃣
-│ │ │ │ ├─h3
-│ │ │ │ │ ├─#text "Heading"
-│ │ │ │ ├─p
-│ │ │ │ │ ├─#text "short description"
+#document
+├─html
+│ ├─head
+│ ├─body
+│ │ ├─article   *️⃣
+│ │ │ ├─h3
+│ │ │ │ ├─#text "Heading"
+│ │ │ ├─p
+│ │ │ │ ├─#text "short description"
 ```
 
 If we take the input above and run `UnwrapNode(articleNode)` we can "unwrap" the `<article>`. That means removing the `<article>` while _keeping_ the children (`<h3>` and `<p>`).
 
 ```text
-├─#document
-│ ├─html
-│ │ ├─head
-│ │ ├─body
-│ │ │ ├─h3
-│ │ │ │ ├─#text "Heading"
-│ │ │ ├─p
-│ │ │ │ ├─#text "short description"
+#document
+├─html
+│ ├─head
+│ ├─body
+│ │ ├─h3
+│ │ │ ├─#text "Heading"
+│ │ ├─p
+│ │ │ ├─#text "short description"
 ```
 
 ---
@@ -261,12 +258,12 @@ And the `#text` nodes stand out.
 > For example in [neighbors_test.go](/neighbors_test.go)
 
 ```text
-├─#document
-│ ├─html
-│ │ ├─head
-│ │ ├─body
-│ │ │ ├─a (href=/about)
-│ │ │ │ ├─#text "Read More"
+#document
+├─html
+│ ├─head
+│ ├─body
+│ │ ├─a (href=/about)
+│ │ │ ├─#text "Read More"
 ```
 
 While the normal "net/html" [`Render()`](https://pkg.go.dev/golang.org/x/net/html#Render) function would have produced this:
