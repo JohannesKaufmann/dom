@@ -7,7 +7,7 @@ func ContainsNode(startNode *html.Node, matchFn func(node *html.Node) bool) bool
 }
 
 func FindFirstNode(startNode *html.Node, matchFn func(node *html.Node) bool) *html.Node {
-	nextFunc := initGetNeighbor(
+	nextFunc := UNSTABLE_initGetNeighbor(
 		FirstChildNode,
 		NextSiblingNode,
 		func(node *html.Node) bool {
@@ -28,7 +28,7 @@ func FindFirstNode(startNode *html.Node, matchFn func(node *html.Node) bool) *ht
 }
 
 func FindAllNodes(startNode *html.Node, matchFn func(node *html.Node) bool) (foundNodes []*html.Node) {
-	nextFunc := initGetNeighbor(
+	nextFunc := UNSTABLE_initGetNeighbor(
 		FirstChildNode,
 		NextSiblingNode,
 		func(node *html.Node) bool {
