@@ -6,6 +6,24 @@ package dom
 
 import "golang.org/x/net/html"
 
+// AllNodes recursively gets all the nodes in the tree.
+func AllNodes(startNode *html.Node) (allNodes []*html.Node) {
+	var finder func(*html.Node)
+	finder = func(node *html.Node) {
+		allNodes = append(allNodes, node)
+
+		for child := node.FirstChild; child != nil; child = child.NextSibling {
+			finder(child)
+		}
+	}
+
+	finder(startNode)
+
+	return allNodes
+}
+
+// - - - - - - - - - - - - - - - //
+
 func AllChildNodes(node *html.Node) (children []*html.Node) {
 	for child := node.FirstChild; child != nil; child = child.NextSibling {
 		children = append(children, child)

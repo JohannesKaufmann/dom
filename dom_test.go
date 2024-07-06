@@ -6,6 +6,30 @@ import (
 	"golang.org/x/net/html"
 )
 
+func TestAllNodes(t *testing.T) {
+	child0 := &html.Node{
+		Type: html.ElementNode,
+	}
+	child0.AppendChild(&html.Node{
+		Type: html.TextNode,
+	})
+
+	child1 := &html.Node{
+		Type: html.ElementNode,
+	}
+
+	doc := &html.Node{}
+	doc.AppendChild(child0)
+	doc.AppendChild(child1)
+
+	nodes := AllNodes(doc)
+	if len(nodes) != 4 {
+		t.Errorf("expected different length, but got %d", len(nodes))
+	}
+}
+
+// - - - - - - - - - - - - - - - //
+
 func TestAllChildNodes(t *testing.T) {
 	child0 := &html.Node{
 		Type: html.ElementNode,
