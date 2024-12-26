@@ -132,7 +132,6 @@ root
 	}
 }
 
-/*
 func TestWrapNode(t *testing.T) {
 	child1 := &html.Node{
 		Type: html.ElementNode,
@@ -166,18 +165,39 @@ func TestWrapNode(t *testing.T) {
 		Data: "wrapper",
 	}
 
-	if render(t, root) != "<root><parent><child1></child1><child2><child2.1></child2.1></child2></parent></root>" {
+	expectedBefore := strings.TrimSpace(`
+root
+├─parent
+│ ├─child1
+│ ├─child2
+│ │ ├─child2.1
+	`)
+	expectedAfter := strings.TrimSpace(`
+root
+├─wrapper
+│ ├─parent
+│ │ ├─child1
+│ │ ├─child2
+│ │ │ ├─child2.1
+	`)
+
+	if RenderRepresentation(root) != expectedBefore {
 		t.Error("expected a different initial render")
 	}
 	if root.FirstChild != parent {
 		t.Error("expected the parent to be under root")
 	}
 	WrapNode(parent, wrapper)
-	if render(t, root) != "<root><wrapper><parent><child1></child1><child2><child2.1></child2.1></child2></parent></wrapper></root>" {
+	if RenderRepresentation(root) != expectedAfter {
 		t.Error("expected a different final render")
 	}
 	if root.FirstChild != wrapper {
 		t.Error("expected the wrapper to be under root")
 	}
+
+	// With no parent, there should be no change.
+	WrapNode(root, &html.Node{Type: html.ElementNode, Data: "sky"})
+	if RenderRepresentation(root) != expectedAfter {
+		t.Error("there should be no changes")
+	}
 }
-*/

@@ -34,17 +34,16 @@ func UnwrapNode(node *html.Node) {
 	node.Parent.RemoveChild(node)
 }
 
-// TODO: WrapNode or WrapNodes
-//
-// func WrapNode(existingNode, newNode *html.Node) *html.Node {
-// 	if existingNode == nil || existingNode.Parent == nil {
-// 		return existingNode
-// 	}
-//
-// 	existingNode.Parent.InsertBefore(newNode, existingNode)
-// 	existingNode.Parent.RemoveChild(existingNode)
-//
-// 	newNode.AppendChild(existingNode)
-//
-// 	return newNode
-// }
+// WrapNode wraps the newNode around the existingNode.
+func WrapNode(existingNode, newNode *html.Node) *html.Node {
+	if existingNode == nil || existingNode.Parent == nil {
+		return existingNode
+	}
+
+	existingNode.Parent.InsertBefore(newNode, existingNode)
+	existingNode.Parent.RemoveChild(existingNode)
+
+	newNode.AppendChild(existingNode)
+
+	return newNode
+}

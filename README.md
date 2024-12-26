@@ -224,6 +224,8 @@ If we take the input above and run `UnwrapNode(articleNode)` we can "unwrap" the
 │ │ │ ├─#text "short description"
 ```
 
+For the reverse you can use `WrapNode(existingNode, newNode)`.
+
 ---
 
 ### RenderRepresentation
